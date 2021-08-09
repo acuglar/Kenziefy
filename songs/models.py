@@ -17,9 +17,11 @@ class Song(models.Model):
 
 class Artist(models.Model):
     name = models.CharField(max_length=255, unique=True)
-
+    formed_in = models.IntegerField()
+    status = models.CharField(max_length=255)
+    
     def __str__(self):
-        return self.name
+        return f'{self.name} - {self.status}'
 
 class Biography(models.Model):
     """ artist 1:1 bio """
@@ -27,9 +29,14 @@ class Biography(models.Model):
     # TextField não é restrito a 255 caracteres
     artist = models.OneToOneField(Artist, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.artist} - {self.description}'
+
 class Playlist(models.Model):
     title = models.CharField(max_length=255)
     songs = models.ManyToManyField(Song, related_name="playlists")
     # on_delete não é requisito em ManyToMany   
     # ManyToMany DEFAULT -> null=True 
 
+    def __str__(self):
+        return f'{self.title} {self.songs}'
