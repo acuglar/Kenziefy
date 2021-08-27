@@ -1,4 +1,4 @@
-# Kenziefy 001_models_and_relations_
+# Kenziefy 002_models_and_relations_
 
 ## criando model
 1. ao criar uma model, necessário fazer as migrations
